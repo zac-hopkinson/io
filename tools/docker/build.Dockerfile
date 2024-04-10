@@ -3,13 +3,13 @@ ARG TENSORFLOW_VERSION
 FROM tensorflow/build:${TENSORFLOW_VERSION}-python$PYTHON_VERSION
 
 ARG PYTHON_VERSION
-ARG TENSORFLOW_VERSION
+ARG TENSORFLOW_PIP_VERSION
 ARG BAZEL_OPTIMIZATION
 
 ADD . /opt/io
 WORKDIR /opt/io
 
-RUN python${PYTHON_VERSION} -m pip install tensorflow==${TENSORFLOW_VERSION}
+RUN python${PYTHON_VERSION} -m pip install ${TENSORFLOW_PIP_VERSION}
 
 RUN python$PYTHON_VERSION -m pip uninstall -y tensorflow-io-gcs-filesystem
 
